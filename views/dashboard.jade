@@ -1,0 +1,162 @@
+// Dashboard Template
+
+extends layout
+
+block content
+
+    section
+        h1#page_title= title
+
+        #dashboard_container
+            
+            .widget_outer(style='float:left;')
+                h1 Azure Service Manager
+
+                select(id="asm_accounts")
+
+                script.
+                    $(document).ready(function(){
+                        $.ajax({
+                            url: '/azure/asm/account/list',
+                            type: "GET",
+                            async: false,
+                            success: function(response)
+                            {
+                                $.each($.parseJSON(response), function(idx, obj) 
+                                {
+                                    if(obj.isDefault) 
+                                    {
+                                        $('#asm_accounts').append('<option selected=true value="' + obj.tenantId + '">' + obj.name + '</option>')
+                                    }
+                                    else
+                                    {
+                                        $('#asm_accounts').append('<option value="' + obj.tenantId + '">' + obj.name + '</option>')
+                                    }
+                                })
+                            }
+                        })
+                        $('#asm_accounts').change(function() {
+                            $.ajax({
+                                url: '/azure/asm/account/set/' + $(this).val(),
+                                type: "PUT",
+                                async: false,
+                                success: function(response)
+                                {
+                                    alert($.parseJSON(response)) 
+                                }
+                            })
+                        })
+                    })
+
+                
+                .widget_inner
+                    #services
+                    
+                    script.
+                        $(document).ready(function(){
+                            $.ajax({
+                                url: '/azure/asm/service/list',
+                                type: "GET",
+                                async: false,
+                                success: function(response){
+                                    
+                                    $.each($.parseJSON(response), function(idx, obj) 
+                                    {
+                                        $('#services').append('<h3>' + obj.serviceName + '</h3>');
+                                        
+                                        $('#services').append('<div>');
+                                        
+                                        $.ajax({
+                                            url: '/azure/asm/service/show/' + obj.serviceName, 
+                                            type: 'GET',
+                                            async: false,
+                                            success: function(response) {
+
+                                                $.each($.parseJSON(response.deployments.roleInstances), function(idx, obj)
+                                                {
+                                                    
+                                                    $('#' + service + '').append("<p>" + obj.roleName + "</p>")
+                                                })
+                                            }
+                                        })
+
+                                        $('#services').append('</div>');
+                                    })
+                                }
+                            })
+                            $("#services").accordion()
+                        })
+                        
+            .widget_outer(style='float:right;')
+                h1 Azure Resource Manager
+
+                select(id="arm_accounts")
+
+                script.
+                    $(document).ready(function(){
+                        $.ajax({
+                            url: '/azure/arm/account/list',
+                            type: "GET",
+                            async: false,
+                            success: function(response)
+                            {
+                                $.each($.parseJSON(response), function(idx, obj) 
+                                {
+                                   if(obj.isDefault === true) 
+                                    {
+                                        $('#arm_accounts').append('<option selected=true value=' + obj.tenantId + '>' + obj.name + '</option>')
+                                    }
+                                    else
+                                    {
+                                        $('#arm_accounts').append('<option value=' + obj.tenantId + '>' + obj.name + '</option>')
+                                    }
+                                })
+                            }
+                        })
+                    })
+
+                     $('#arm_accounts').change(function() {
+                        $.ajax({
+                            url: '/azure/arm/account/set/' + $(this).val(),
+                            type: "PUT",
+                            async: false,
+                            success: function(response)
+                            {
+                                alert($.parseJSON(response)) 
+                            }
+                        })
+                    })
+
+                .widget_inner
+                    #groups
+
+                    script.
+                        $(document).ready(function(){
+                            $.ajax({
+                                url: '/azure/arm/group/list',
+                                type: "GET",
+                                async: false,
+                                success: function(response){
+                                    
+                                    $.each($.parseJSON(response), function(idx, obj) 
+                                    {
+                                        $('#groups').append('<h3>' + obj.name + '</h3>');
+                                        $('#groups').append('<div id="' + obj.name + '" style="max-height:600px;"></div>') 
+                                        
+                                        $.ajax({
+                                            url: '/azure/arm/resource/list/' + obj.name, 
+                                            type: 'GET',
+                                            async: false,
+                                            success: function(response) {
+
+                                                $.each($.parseJSON(response), function(idx, obj)
+                                                {
+                                                    $('#' + obj.name + '').append("<p>" + obj.id + "</p>")
+                                                })
+                                            }
+                                        })
+                                    })
+                                }
+                            })
+                            $("#groups").accordion()
+                        })
