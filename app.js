@@ -36,7 +36,7 @@ var DB = flatfile.sync("app.db");
 app.get('/', function (req, res) {
 
     if (req.session.name) { res.redirect('/dashboard/' + req.session.name); }
-    res.render('welcome', { title: 'Easily migrate AWS/Azure/Google Cloud instances between service providers.', name: undefined })
+    res.render('welcome', { title: 'Monitor & Manage Amazon, Microsoft and Google Cloud Resources.', name: undefined })
 })
 
 app.get('/welcome', function (req, res) { res.redirect('/');});
@@ -207,6 +207,20 @@ app.post('/profile/:name/update', function(req, res)
 
 /*
   C L O U D  S W I T C H  R E S T  S E R V I C E S   
+*/
+
+/*
+  Amazon Web Services 
+*/
+
+// AWS Login
+
+// AWS Logout
+
+// AWS EC2 Describe Instances
+
+/*
+  Microsoft Azure 
 */
 
 // Azure Login 

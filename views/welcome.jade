@@ -13,9 +13,9 @@ block content
 
                 form(method="POST", action="/signin")
                     p Name
-                    input(type="text", name="name")
+                    input(type="text", name="name", title="Already signed up? Sign in using your account name.")
                     p Password
-                    input(type="password", name="password")
+                    input(type="password", name="password", title="Your account password please.")
                     p
                     button(type="submit") Sign In
 
@@ -24,13 +24,13 @@ block content
 
                 form(method="POST", action="/signup")
                     p Name
-                    input(type="text", name="name")
+                    input(type="text", name="name", title="Sign up with a unique account name. We need to know what to call you!")
                     p Email
-                    input(type="text", name="email")
+                    input(type="text", name="email", title="Please provide us an email address so that we can verify your identify.")
                     p Phone
-                    input(type="text", name="phone")
+                    input(type="text", name="phone", title="For information and verification purposes only.")
                     p Password
-                    input(type="password", name="password")
+                    input(type="password", name="password", title="Give your account a unique password. Any format will do!")
                     p
                     button(type="submit") Sign Up
   
