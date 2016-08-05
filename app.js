@@ -1,4 +1,4 @@
-// Cloud Switch Server
+// Aperture Switch Server
 
 var express = require('express');
 var http = require('http');
@@ -206,7 +206,7 @@ app.post('/profile/:name/update', function(req, res)
 })
 
 /*
-  C L O U D  S W I T C H  R E S T  S E R V I C E S   
+  A P E R T U R E  R E S T  S E R V I C E S   
 */
 
 /*
@@ -405,7 +405,7 @@ app.get('/azure/arm/resource/list/:name', function (req, res)
     })
 })
 
-// Coud Switch Server Startup
+// Aperture Server Startup
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Cloud Switch Server Listening @ Port: " + app.get('port'));
 });
