@@ -1,4 +1,4 @@
-# Cloud Switch
-Easily migrate AWS/Azure/Google Cloud instances between service providers.
+# Aperture
+Manipulate Amazon, Microsoft and Google Cloud Resources.
 
-## Cloud Switch (c) Thoughtpivot, LLC & The Cloud Switch Contributors
+## Aperture (c) Thoughtpivot, LLC & Its Contributors
