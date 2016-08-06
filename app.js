@@ -36,7 +36,7 @@ var DB = flatfile.sync("app.db");
 app.get('/', function (req, res) {
 
     if (req.session.name) { res.redirect('/dashboard/' + req.session.name); }
-    res.render('welcome', { title: 'Monitor & Manage Amazon, Microsoft and Google Cloud Resources.', name: undefined })
+    res.render('welcome', { title: 'Easily manage Amazon, Microsoft and Google compute resources.', name: undefined })
 })
 
 app.get('/welcome', function (req, res) { res.redirect('/');});
