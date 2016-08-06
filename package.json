@@ -1,8 +1,8 @@
 {
-  "name": "asm2arm",
+  "name": "aperture",
   "version": "1.0.0a",
   "author": "Dan Stephenson (ispyhumanfly)",
-  "description": "An easy to use ASM to ARM migration application",
+  "description": "Easily manage Amazon, Microsoft and Google compute resources.",
   "contributors": [
     {
       "name": "Dan Stephenson",
