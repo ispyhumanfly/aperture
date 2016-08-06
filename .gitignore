@@ -204,3 +204,4 @@ iisnode/
 app.db
 .DS_Store
 node-debug.log
+azure.err
